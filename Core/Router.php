@@ -1,5 +1,4 @@
 <?php
-
 class Router 
 {
     /**
@@ -7,8 +6,13 @@ class Router
      * @var array
      */
 
-     protected $routes = [];
+    protected $routes = [];
 
+    /**
+     * Parameters from the matched route
+     * @var array
+     */
+    protected $params = [];
     /**
      * add a route to the routing table
      * 
@@ -29,8 +33,35 @@ class Router
      * @return array
      */
 
-     public function getRoutes()
-     {
+    public function getRoutes()
+    {
          return $this->routes;
-     }
+    }
+
+    /**
+     * Get the currently matched parameters
+     * 
+     * @return array
+     */
+    public function match($url)
+    {
+        foreach($this->routes as $route => $params){
+            if($url == $route){
+                $this->params = $params;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Get the currently matched parameters
+     * 
+     * @return array
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
 } 
