@@ -1,1 +1,1 @@
-## PHP MVC Design
+## PHP MVC Framework
